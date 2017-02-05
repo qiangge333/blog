@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block content %}
+    {% if user %}
+        <div>
+            <a href="{{ url_for('blog.new') }}">新博客</a>
+        </div>
+    {% else %}
+        <h1>注册用户才能发博客</h1>
+    {% endif %}
+    <div>
+        {% for b in blogs %}
+            <div>
+                <a href="{{ url_for('blog.detail', id=b.id) }}">
+                    {{ b.title }}
+                    {{ b.created_time }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
